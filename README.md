@@ -12,30 +12,40 @@ To run this app you will need to install:
 * Docker (version 17.09.0+)
 * docker-compose (version 1.16.1+)
 
-## Deployment
+## Configuration
 
 1. Clone this project.
-2. Encode your **screen.name:password** using a base64 enconder.
-3. Replace the **SCREEN_NAME** value with your screen name:
+2. Replace the **SCREEN_NAME** value with your screen name:
 ```python
 # lesa-crawler/crawler/lesaticket/lesa.py
 SCREEN_NAME = "screen.name"
 ```
+3. Encode your **screen.name:password** using a base64 enconder.
 4. Replace the authorization hash code with yours: 
 ```python
 # lesa-crawler/crawler/lesaticket/settings.py
 DEFAULT_REQUEST_HEADERS = {
-...
-
+'Accept': 'text/html,application/xhtml+xml, ...',
+'Accept-Language': 'en',
 'Authorization': 'Basic c2NyZWVuLm5hbWU6cGFzc3dvcmQ=',
 }
 ```
-5. Run the following command to build the containers and startup the aplication.  
+
+## Deployment
+
+1. Run the following command to build the containers and startup the aplication.  
 ```
 docker-compose up --build
 ``` 
-TODO
-
+2. When it finish its initialization, you are able to access the following URLs:
+* http://localhost:9200 (user: elastic, password: changeme)
+* http://localhost:5601 (same as above)
+* http://localhost:6800 (The scrapyd web interface)
+* http://localhost:8050 (The splash web interface)
+3. If don't want to wait the application start crawling, execute the following command:
+```
+curl http://localhost:6800/schedule.json -d project=default -d spider=ticket
+```
 
 ## Built With
 
