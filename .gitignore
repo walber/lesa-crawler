@@ -1,0 +1,6 @@
+# Byte-compiled / optimized / scrapyd generated directories
+__pycache__/
+dbs/
+items/
+logs/
+twistd.pid
