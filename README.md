@@ -9,8 +9,8 @@ TODO
 ### Prerequisites
 
 To run this app you will need to install:
-Docker (version 17.09.0+)
-docker-compose (version 1.16.1+)
+* Docker (version 17.09.0+)
+* docker-compose (version 1.16.1+)
 
 ## Deployment
 
