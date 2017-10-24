@@ -1,0 +1,62 @@
+version: '2'
+
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.5.1
+    container_name: elasticsearch
+    restart: on-failure
+    environment:
+        - http.host=0.0.0.0
+        - bootstrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+        memlock:
+            soft: -1
+            hard: -1
+        mem_limit: 1g
+    volumes:
+        - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+        - ./elasticsearch/data:/usr/share/elasticsearch/data
+    ports:
+        - 9200:9200
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:5.5.1
+    container_name: kibana
+    restart: on-failure
+    environment:
+        SERVER_NAME: kibana
+        ELASTICSEARCH_URL: http://elasticsearch:9200
+        SERVER_HOST: "0.0.0.0"
+    volumes:
+        - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+        - ./kibana/data:/usr/share/kibana/data
+    ports:
+        - 5601:5601
+    depends_on:
+        - elasticsearch
+
+  scrapyd:
+    build: ./scrapyd
+    image: scrapyd:1.0
+    container_name: scrapyd
+    restart: on-failure
+    volumes:
+        - ./crawler/:/var/lib/scrapyd/
+    ports:
+        - 6800:6800
+    depends_on:
+        - elasticsearch
+
+  splash:
+    build: ./splash
+    image: splash:1.0
+    container_name: splash
+    restart: on-failure
+    expose:
+        - "8050"
+    ports:
+        - 8050:8050
+    depends_on:
+        - scrapyd
