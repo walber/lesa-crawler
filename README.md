@@ -1,10 +1,10 @@
 # LESA Crawler
 
-TODO
+A web crawler that uses the Elasticsearch, Kibana, Scrapy framework, Splash javascript rendering service on top of a Docker containerized application archtecture that aims to retrieve data from LESA tickets.
 
 ## Getting Started
 
-TODO
+Since current LESA doesn't provide any sort of REST API to retrieve data from tickets, I've started developping a web crawler that aquire data through Xpath queries. All data retrieved is stored in an Elasticsearch index where it can be visualized through Kibana.
 
 ### Prerequisites
 
@@ -20,14 +20,22 @@ To run this app you will need to install:
 # lesa-crawler/crawler/lesaticket/lesa.py
 SCREEN_NAME = "screen.name"
 ```
-3. Encode your **screen.name:password** using a base64 enconder.
-4. Replace the authorization hash code with yours: 
+3. You can also change the start mark of date range and region of the query:
+```python
+# lesa-crawler/crawler/lesaticket/lesa.py
+START_MONTH = ...
+START_DAY = ...
+START_YEAR = ...
+REGION_ID = ...
+``` 
+4. Encode your **screen.name:password** using a base64 enconder.
+5. Replace the authorization hash code with yours: 
 ```python
 # lesa-crawler/crawler/lesaticket/settings.py
 DEFAULT_REQUEST_HEADERS = {
-'Accept': 'text/html,application/xhtml+xml, ...',
-'Accept-Language': 'en',
-'Authorization': 'Basic c2NyZWVuLm5hbWU6cGFzc3dvcmQ=',
+   'Accept': 'text/html,application/xhtml+xml, ...',
+   'Accept-Language': 'en',
+   'Authorization': 'Basic c2NyZWVuLm5hbWU6cGFzc3dvcmQ=',
 }
 ```
 
