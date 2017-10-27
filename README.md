@@ -38,6 +38,7 @@ DEFAULT_REQUEST_HEADERS = {
    'Authorization': 'Basic c2NyZWVuLm5hbWU6cGFzc3dvcmQ=',
 }
 ```
+6. Set the time zone of scrapyd and splash Dockerfiles.
 
 ## Deployment
 
