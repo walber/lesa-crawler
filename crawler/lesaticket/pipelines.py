@@ -3,7 +3,8 @@ import datetime
 from elasticsearch_dsl import DocType, Index, Date, Byte, Keyword
 from elasticsearch_dsl.connections import connections
 from elasticsearch.exceptions import ConnectionError
-from lesaticket.elastic_settings import *
+from lesaticket.elastic_settings import ELASTICSEARCH_HOST, ELASTICSEARCH_PORT, ELASTICSEARCH_USER, ELASTICSEARCH_PASSWD
+from lesaticket.lesa import TIME_ZONE
 
 # Define your item pipelines here
 #
@@ -14,7 +15,6 @@ def to_datetime(date_str):
 
     parts = date_str.split()
     date_wout_tz = " ".join(parts[:-1])
-    TIME_ZONE = "-0300"
     date_with_tz = "{} {}".format(date_wout_tz, TIME_ZONE)
 
     # Example: February 7, 2017 2:28:18 AM -0300
@@ -135,3 +135,4 @@ class Ticket(DocType):
 
     class Meta:
         index = "support"
+
