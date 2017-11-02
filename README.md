@@ -15,10 +15,11 @@ To run this app you will need to install:
 ## Configuration
 
 1. Clone this project.
-2. Replace the **SCREEN_NAME** value with your screen name:
+2. Replace the **SCREEN_NAME** and *TIME_ZONE* values with your LESA screen name and time zone:
 ```python
 # lesa-crawler/crawler/lesaticket/lesa.py
 SCREEN_NAME = "screen.name"
+TIME_ZONE = "<your time zone>" # Where "+0000" means GMT Time Zone.
 ```
 3. You can also change the start mark of date range and region of the query:
 ```python

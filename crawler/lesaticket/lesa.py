@@ -1,23 +1,25 @@
 from datetime import date
 
 # LESA user info
-SCREEN_NAME = "screen.name"
+SCREEN_NAME = "walber.nunes"
+TIME_ZONE = "-0300"
 
 # Search parameters
 START_MONTH = 0 # January == 0
 START_DAY = 1
 START_YEAR = 2017
 REGION_ID = 42356516 # Brazilian code
-# American code:		42356488
+
+# American code:    42356488
 # Australian code:  42442481
-# Brazilian code:		42356516
-# Chineese code:		42356502
-# Global code:			70917309
-# Hungarian code:		42356493
-# Indian code:			42356498
-# Japaneese code:		45637701
+# Brazilian code:   42356516
+# Chineese code:    42356502
+# Global code:      70917309
+# Hungarian code:   42356493
+# Indian code:      42356498
+# Japaneese code:   45637701
 # N/A code:         78237012
-# Spanish code:			42356507
+# Spanish code:     42356507
 
 class URLManager(object):
 
