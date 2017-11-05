@@ -45,9 +45,13 @@ DEFAULT_REQUEST_HEADERS = {
 
 1. Run the following command to build the containers and startup the aplication.  
 ```
-docker-compose up --build
-``` 
-2. When it finish its initialization, you are able to access the following URLs:
+$ docker-compose --file <path to>/lesa-crawler/docker-compose.yml up --build
+```
+Or go to *lesa-crawler* directory and just enter:
+```
+$ docker-compose up --build
+```
+2. When it finishes its initialization, you are able to access the following URLs:
 * http://localhost:9200 (user: elastic, password: changeme)
 * http://localhost:5601 (same as above)
 * http://localhost:6800 (The scrapyd web interface)
