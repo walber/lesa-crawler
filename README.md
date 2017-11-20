@@ -29,14 +29,14 @@ START_DAY = ...
 START_YEAR = ...
 REGION_ID = ...
 ``` 
-4. Encode your **screen.name:password** using a base64 enconder.
+4. Encode your **email:password** using a base64 enconder. (Your LESA site credentials).
 5. Replace the authorization hash code with yours: 
 ```python
 # lesa-crawler/crawler/lesaticket/settings.py
 DEFAULT_REQUEST_HEADERS = {
    'Accept': 'text/html,application/xhtml+xml, ...',
    'Accept-Language': 'en',
-   'Authorization': 'Basic c2NyZWVuLm5hbWU6cGFzc3dvcmQ=',
+   'Authorization': 'Basic c2NyZWVuLm5hbWVAbGlmZXJheS5jb20=',
 }
 ```
 6. Set the time zone of scrapyd and splash Dockerfiles.
