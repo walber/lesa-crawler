@@ -30,7 +30,7 @@ START_YEAR = ...
 REGION_ID = ...
 ```
 4. Encode your **screen.name:password** using a base64 enconder. (Your JIRA credentials).
-```
+```python
 # lesa-crawler/crawler/lesaticket/custom_settings.py
 LIFERAY_ISSUES_AUTORIZATION_HEADER = {
     'Authorization': 'Basic c2NyZWVuLm5hbWU6cGFzc3dvcmQ='
