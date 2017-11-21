@@ -60,7 +60,7 @@ SUPPORT_OFFICE = 'Brazil'
 # Enconde your 'user.name:password' in base64
 #
 LIFERAY_ISSUES_AUTORIZATION_HEADER = {
-    "Authorization": 'Basic c2NyZWVuLm5hbWU6cGFzc3dvcmQ='
+    'Authorization': 'Basic c2NyZWVuLm5hbWU6cGFzc3dvcmQ='
 }
 
 #

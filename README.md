@@ -17,20 +17,32 @@ To run this app you will need to install:
 1. Clone this project.
 2. Replace the **SCREEN_NAME** and **TIME_ZONE** values with your LESA screen name and time zone:
 ```python
-# lesa-crawler/crawler/lesaticket/lesa.py
-SCREEN_NAME = "screen.name"
-TIME_ZONE = "<your time zone>" # Where "+0000" means GMT time zone.
+# lesa-crawler/crawler/lesaticket/custom_settings.py
+SCREEN_NAME = 'screen.name'
+TIME_ZONE = '<your time zone>' # Where "+0000" means GMT time zone.
 ```
 3. You can also change the start mark of date range and region of the query:
 ```python
-# lesa-crawler/crawler/lesaticket/lesa.py
+# lesa-crawler/crawler/lesaticket/custom_settings.py
 START_MONTH = ...
 START_DAY = ...
 START_YEAR = ...
 REGION_ID = ...
-``` 
-4. Encode your **email:password** using a base64 enconder. (Your LESA site credentials).
-5. Replace the authorization hash code with yours: 
+```
+4. Encode your **screen.name:password** using a base64 enconder. (Your JIRA credentials).
+```
+# lesa-crawler/crawler/lesaticket/custom_settings.py
+LIFERAY_ISSUES_AUTORIZATION_HEADER = {
+    'Authorization': 'Basic c2NyZWVuLm5hbWU6cGFzc3dvcmQ='
+}
+```
+5. Replace the **SUPPORT_OFFICE** value with yours:
+```python
+# lesa-crawler/crawler/lesaticket/custom_settings.py
+SUPPORT_OFFICE = '<your support office>'
+```
+6. Encode your **email:password** using a base64 enconder. (Your LESA site credentials).
+7. Replace the authorization hash code with yours: 
 ```python
 # lesa-crawler/crawler/lesaticket/settings.py
 DEFAULT_REQUEST_HEADERS = {
@@ -39,7 +51,7 @@ DEFAULT_REQUEST_HEADERS = {
    'Authorization': 'Basic c2NyZWVuLm5hbWVAbGlmZXJheS5jb20=',
 }
 ```
-6. Set the time zone of scrapyd and splash Dockerfiles.
+8. Set the time zone of scrapyd and splash Dockerfiles.
 
 ## Deployment
 
