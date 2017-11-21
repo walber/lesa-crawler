@@ -5,23 +5,44 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
+import datetime
 from scrapy import Item, Field
 from scrapy.loader.processors import MapCompose, TakeFirst
+from lesaticket.custom_settings import TIME_ZONE
 
 
 def str_trim(value):
     return value.strip()
 
+
 def remove_parentesis(value):
-    return str_trim(value).strip("()")
+    return str_trim(value).strip('()')
+
 
 def coma_sepated_to_list(value):
     return map(str_trim, value.split(','))
 
+
+def datetime_lesa(date_str):
+
+    parts = date_str.split()
+    date_wout_tz = ' '.join(parts[:-1])
+    date_with_tz = '{} {}'.format(date_wout_tz, TIME_ZONE)
+
+    # Example: February 7, 2017 2:28:18 AM -0300
+    return datetime.datetime.strptime(date_with_tz, '%B %d, %Y %I:%M:%S %p %z')
+
+
+def datetime_jira(date_str):
+
+    # Example: 2017-09-04T15:43:17.000-0700
+    return datetime.datetime.strptime(date_str, '%Y-%m-%dT%H:%M:%S.000%z')
+
+
 class LesaticketItem(Item):
 
     # Header info
-    id = Field(
+    ticket_id = Field(
         input_processor = MapCompose(str_trim),
         output_processor = TakeFirst()
     )
@@ -80,16 +101,10 @@ class LesaticketItem(Item):
         output_processor = TakeFirst()
     )
     last_update = Field(
-        input_processor = MapCompose(str_trim),
-        output_processor = TakeFirst()
+        input_processor = MapCompose(str_trim, datetime_lesa)
     )
     due_date = Field(
-        input_processor = MapCompose(str_trim),
-        output_processor = TakeFirst()
-    )
-    sla_date = Field(
-        input_processor = MapCompose(str_trim),
-        output_processor = TakeFirst()
+        input_processor = MapCompose(str_trim, datetime_lesa)
     )
     reporter = Field(
         input_processor = MapCompose(str_trim),
@@ -127,4 +142,11 @@ class LesaticketItem(Item):
     database = Field(
         input_processor = MapCompose(str_trim),
         output_processor = TakeFirst()
+    )
+    
+    # From JIRA
+    components = Field()
+    expired_sla = Field()
+    resolution_date = Field(
+        input_processor = MapCompose(datetime_jira)
     )

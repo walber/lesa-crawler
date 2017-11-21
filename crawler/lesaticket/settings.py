@@ -42,9 +42,9 @@ COOKIES_ENABLED = False
 # generate the base64 hash code for user your screen.name:password.
 # The screen name must match with the one placed in 'lesa.py',
 DEFAULT_REQUEST_HEADERS = {
-   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-   'Accept-Language': 'en',
-   'Authorization': 'Basic c2NyZWVuLm5hbWU6cGFzc3dvcmQ=',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+    'Accept-Language': 'en',
+    'Authorization': 'Basic c2NyZWVuLm5hbWVAbGlmZXJheS5jb206cGFzc3dvcmQ=',
 }
 
 # Enable or disable spider middlewares
@@ -68,7 +68,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'lesaticket.pipelines.ElasticSearchIndexerPipeline': 300,
+    'lesaticket.pipelines.ElasticsearchPipeline': 431,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

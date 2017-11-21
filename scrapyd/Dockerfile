@@ -14,7 +14,7 @@ RUN systemctl enable supervisor
 # Sets the application timezone.
 RUN echo "America/Recife" > /etc/timezone
 RUN dpkg-reconfigure -f noninteractive tzdata
-RUN pip install elasticsearch-dsl
+RUN pip install elasticsearch-dsl jira
 
 COPY ./cron-file /etc/cron.d/cron-file
 RUN chmod 0644 /etc/cron.d/cron-file
