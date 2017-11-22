@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from jira import JIRA
-from lesaticket.custom_settings import LIFERAY_ISSUES_AUTORIZATION_HEADER, EXPIRED_SLA_SIT_ISSUES, SIT_ISSUES, SIT_FIELDS
+from lesaticket.custom_settings import LIFERAY_ISSUES_AUTORIZATION_HEADER, CALCULABLE_SLA_SIT_ISSUES, SIT_ISSUES, SIT_FIELDS
 
 
 JIRA.DEFAULT_OPTIONS['headers'].update(LIFERAY_ISSUES_AUTORIZATION_HEADER)
@@ -38,7 +38,7 @@ class LiferayJira(JIRA):
 
             issues[ticket_id] = {
                 'components': [comp['name'] for comp in fields['components']],
-                'expired_sla': 'N/A'
+                'sla': 'N/A'
             }
             
             if fields['resolutiondate'] is not None:
@@ -47,9 +47,9 @@ class LiferayJira(JIRA):
         return issues
 
 
-    def expired_sla_issues(self):
+    def calculable_sla_issues(self):
 
-        result = self.exec_query(EXPIRED_SLA_SIT_ISSUES, ['summary'])
+        result = self.exec_query(CALCULABLE_SLA_SIT_ISSUES, ['summary'])
         issues = {}
 
         for issue in result:
@@ -57,7 +57,7 @@ class LiferayJira(JIRA):
             ticket_id = fields['summary']
 
             issues[ticket_id] = {
-                'expired_sla': 'yes' 
+                'sla': 'calculable'
             }
 
         return issues

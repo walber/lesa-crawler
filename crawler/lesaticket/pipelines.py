@@ -22,7 +22,7 @@ class ElasticsearchPipeline(object):
     def __init__(self):
         liferay_jira = LiferayJira()
         self.issues = liferay_jira.issues()
-        self.issues.update(liferay_jira.expired_sla_issues())
+        self.issues.update(liferay_jira.calculable_sla_issues())
     
         try:
             self.is_connected = ElasticsearchPipeline.instance.ping()
@@ -57,7 +57,7 @@ class ElasticsearchPipeline(object):
                 buff['feedback'] = 'N/A'
 
             if 'cas' not in item._values:
-                buff['cas'] = 'N/A'            
+                buff['cas'] = 'N/A'
 
             item._values.update(buff)            
             ticket = Ticket(meta={'id': ticket_id}, ** item._values)
@@ -95,9 +95,7 @@ class Ticket(DocType):
     database = Keyword()
     components = Keyword()
     resolution_date = Date()
-    expired_sla = Keyword()
-    resolution_date = Date()
-    components = Keyword()
+    sla = Keyword()
 
     class Meta:
         index = INDEX_NAME

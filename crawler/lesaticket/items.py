@@ -145,8 +145,8 @@ class LesaticketItem(Item):
     )
     
     # From JIRA
+    sla = Field()
     components = Field()
-    expired_sla = Field()
     resolution_date = Field(
         input_processor = MapCompose(datetime_jira)
     )

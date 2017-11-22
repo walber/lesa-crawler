@@ -64,7 +64,12 @@ LIFERAY_ISSUES_AUTORIZATION_HEADER = {
 }
 
 #
-# Fetch all ticket in the same range configured by
+# Fields to retrive from SIT issues.
+#
+SIT_FIELDS = ['component', 'resolutiondate', 'summary']
+
+#
+# Fetches all ticket in the same range configured by
 # START_MONTH, START_DAY, START_YEAR in 'leasticket/lesa.py'
 #
 SIT_ISSUES = """
@@ -74,18 +79,10 @@ SIT_ISSUES = """
     """.format(SUPPORT_OFFICE, START_YEAR, (START_MONTH + 1), START_DAY)
 
 #
-# Fields to retrive from SIT issues.
+# Fetches all tickets wich SLA is calculable. (Not reopened tickets)
 #
-SIT_FIELDS = ['component', 'resolutiondate', 'summary']
-
-#
-# Fetches all expired SLA open tickets.
-#
-EXPIRED_SLA_SIT_ISSUES = """
-    (created <= -21d AND priority = Minor
-    OR created <= -14d AND priority = Major
-    OR created <= -7d AND priority = Critical)
-    AND project = SIT
+CALCULABLE_SLA_SIT_ISSUES = """
+    project = SIT
     AND 'Support Office' = {}
     AND NOT status IN (Closed, Reopened, Resolved, 'Resolved in Production', 'Solution Delivered')
     AND status WAS NOT IN (Closed, Reopened, Resolved, 'Resolved in Production', 'Solution Delivered')
