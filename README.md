@@ -72,6 +72,7 @@ $ docker-compose up --build
 ```
 curl http://localhost:6800/schedule.json -d project=default -d spider=ticket
 ```
+4. Check out the dashboard sample by importing 'export.json' into Kibana.
 
 ## Built With
 
