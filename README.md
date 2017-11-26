@@ -70,7 +70,7 @@ $ docker-compose up --build
 * http://localhost:8050 (The splash web interface)
 3. If don't want to wait the application start crawling, execute the following command:
 ```
-curl http://localhost:6800/schedule.json -d project=default -d spider=ticket
+$ curl http://localhost:6800/schedule.json -d project=default -d spider=ticket
 ```
 4. Check out the dashboard sample by importing 'export.json' into Kibana.
 
@@ -80,3 +80,13 @@ curl http://localhost:6800/schedule.json -d project=default -d spider=ticket
 * [Kibana](https://www.elastic.co/guide/en/kibana/5.5/_configuring_kibana_on_docker.html) - An open source visualization platform designed to work with Elasticsearch.
 * [Scrapyd](https://hub.docker.com/r/vimagick/scrapyd/) - A service to run Scrapy spiders.
 * [Splash](https://hub.docker.com/r/scrapinghub/splash/) - Lightweight, scriptable browser as a service with an HTTP API.
+
+## Screenshots
+
+Sample 1: ![Alt Text](https://github.com/walber/lesa-crawler/blob/master/screenshots/dashboard_1.png?raw=true)
+
+Sample 2: ![Alt Text](https://github.com/walber/lesa-crawler/blob/master/screenshots/dashboard_2.png?raw=true)
+
+Sample 3: ![Alt Text](https://github.com/walber/lesa-crawler/blob/master/screenshots/dashboard_3.png?raw=true)
+
+Sample 4: ![Alt Text](https://github.com/walber/lesa-crawler/blob/master/screenshots/dashboard_4.png?raw=true)
