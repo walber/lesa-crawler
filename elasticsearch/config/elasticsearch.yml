@@ -86,3 +86,6 @@
 # Require explicit names when deleting indices:
 #
 #action.destructive_requires_name: true
+
+xpack.security.enabled: false
+xpack.monitoring.enabled: false
